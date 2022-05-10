@@ -317,8 +317,9 @@ const buttons = {
   "CapsLock": {
     "isSystem": true,
     "systemValue": "CapsLock",
-    // "action": () => {
-    // updateValue(toUpperCase(), true)},
+    "action": () => {
+      setState("isCaps", !state.isCaps);
+    }
   },
   "KeyA": {
     "isSystem": false,
@@ -666,7 +667,6 @@ const keyboard = document.createElement('div');
 const textNode = document.createElement('p');
 
 
-
 const createTextara = () => {
   textarea.classList.add('textarea');
   document.body.appendChild(textarea);
@@ -684,8 +684,6 @@ const createMark = () => {
   textNode.classList.add('mark');
   document.body.appendChild(textNode);
 }
-
-
 
 const createButtons = () => {
   keyboard.innerHTML = '';
@@ -721,10 +719,6 @@ const createButtons = () => {
   });
 }
 
-const onButtonDown = (code) => {
-
-}
-
 // переделать обновление кнопок
 const updateButtons = () => {
   Object.keys(buttons).forEach(key => {
@@ -732,7 +726,8 @@ const updateButtons = () => {
     const value = button.isSystem ? button.systemValue : button[state.lang][state.isShift ? "shiftValue" : "defaultValue"];
 
     const buttonEl = keyboard.querySelector(`.${key}`);
-    buttonEl.innerText = value;
+    buttonEl.innerText = state.isCaps && !
+    button.isSystem ? value.toUpperCase() : value;
   });
 };
 
