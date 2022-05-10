@@ -167,12 +167,9 @@ const buttons = {
   "Tab": {
     "isSystem": true,
     "systemValue": "Tab",
-    // "action": () => {
-    //   setState("isShift", true);
-    // },
-    // "disable": () => {
-    //   setState("isShift", false);
-    // }
+    "action": () => {
+      updateValue("\t", true);
+    }
   },
   "KeyQ": {
     "isSystem": false,
@@ -321,11 +318,7 @@ const buttons = {
     "isSystem": true,
     "systemValue": "CapsLock",
     // "action": () => {
-    //   setState("isShift", true);
-    // },
-    // "disable": () => {
-    //   setState("isShift", false);
-    // }
+    // updateValue(toUpperCase(), true)},
   },
   "KeyA": {
     "isSystem": false,
@@ -437,7 +430,7 @@ const buttons = {
       "shiftValue": 'Ж'
     }
   },
-  "Quote": { 
+  "Quote": {
     "isSystem": false,
     "en": {
       "defaultValue": "'",
@@ -451,12 +444,9 @@ const buttons = {
   "Enter": {
     "isSystem": true,
     "systemValue": "Enter",
-    // "action": () => {
-    //   setState("isShift", true);
-    // },
-    // "disable": () => {
-    //   setState("isShift", false);
-    // }
+    "action": () => {
+      updateValue("\n", true);
+    }
   },
   "ShiftLeft": {
     "isSystem": true,
@@ -545,7 +535,7 @@ const buttons = {
       "shiftValue": 'Ь'
     }
   },
-  "NumpadDemical": { 
+  "NumpadDemical": {
     "isSystem": false,
     "en": {
       "defaultValue": ",",
@@ -556,7 +546,7 @@ const buttons = {
       "shiftValue": 'Б'
     }
   },
-  "Period": { 
+  "Period": {
     "isSystem": false,
     "en": {
       "defaultValue": ".",
@@ -567,7 +557,7 @@ const buttons = {
       "shiftValue": 'Ю'
     }
   },
-  "Slash": { 
+  "Slash": {
     "isSystem": false,
     "en": {
       "defaultValue": "/",
@@ -578,15 +568,15 @@ const buttons = {
       "shiftValue": '?'
     }
   },
-  "ArrowUp": { 
+  "ArrowUp": {
     "isSystem": false,
     "en": {
-      "defaultValue": "&#8593;",
-      "shiftValue": " "
+      "defaultValue": "\u2191",
+      "shiftValue": "\u2191"
     },
     "ru": {
-      "defaultValue": "/",
-      "shiftValue": '?'
+      "defaultValue": "\u2191",
+      "shiftValue": '\u2191'
     }
   },
 
@@ -628,12 +618,38 @@ const buttons = {
     //   console.log("ControlLeft");
     // }
   },
-  "AltRight": {
-    "isSystem": true,
-    "systemValue": "Alt",
-    // "action": () => {
-    //   console.log("ControlLeft");
-    // }
+  "ArrowLeft": {
+    "isSystem": false,
+    "en": {
+      "defaultValue": "\u2190",
+      "shiftValue": "\u2190"
+    },
+    "ru": {
+      "defaultValue": "\u2190",
+      "shiftValue": '\u2190'
+    }
+  },
+  "ArrowDown": {
+    "isSystem": false,
+    "en": {
+      "defaultValue": "\u2193",
+      "shiftValue": "\u2193"
+    },
+    "ru": {
+      "defaultValue": "\u2193",
+      "shiftValue": '\u2193'
+    }
+  },
+  "ArrowRight": {
+    "isSystem": false,
+    "en": {
+      "defaultValue": "\u2192",
+      "shiftValue": "\u2192"
+    },
+    "ru": {
+      "defaultValue": "\u2192",
+      "shiftValue": '\u2192'
+    }
   },
   "ControlRight": {
     "isSystem": true,
@@ -647,6 +663,9 @@ const buttons = {
 
 const textarea = document.createElement('textarea');
 const keyboard = document.createElement('div');
+const textNode = document.createElement('p');
+
+
 
 const createTextara = () => {
   textarea.classList.add('textarea');
@@ -659,6 +678,14 @@ const createKeyboard = () => {
 
   createButtons();
 }
+
+const createMark = () => {
+  textNode.innerHTML = 'Комбинация для смены языка Ctrl + Shift';
+  textNode.classList.add('mark');
+  document.body.appendChild(textNode);
+}
+
+
 
 const createButtons = () => {
   keyboard.innerHTML = '';
@@ -678,7 +705,7 @@ const createButtons = () => {
       if (button.isSystem) {
         button.action();
       } else {
-        updateValue(key === "Digit1" ? "\n" : key === "Digit2" ? "\t" : e.currentTarget.innerText, true);
+        updateValue(e.currentTarget.innerText, true);
       }
     });
 
@@ -749,3 +776,4 @@ document.addEventListener('keyup', (e) => {
 
 createTextara();
 createKeyboard();
+createMark();
