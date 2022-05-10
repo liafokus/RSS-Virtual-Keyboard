@@ -10,7 +10,14 @@
   border-radius: 4px;
   width: 750px;
 }
-
+.textarea{
+  width: 750px;
+  min-height: 200px;
+}
+.mark{
+  font-size: 14px;
+  font-weight: 700;
+}
 .button {
   background: #4c5256;
   margin: 5px;
@@ -26,7 +33,6 @@
   user-select: none;
   transition: all 200ms;
 }
-
 .button:hover:not(.active) {
   background: #6e7376;
 }
@@ -34,20 +40,17 @@
 .system {
   background: #353738;
 }
-
 .Backspace {
   width: 90px;
 }
-
 .Tab{
   width: 60px;
 }
-
 .ShiftLeft {
-  width: 110px;
+  width: 90px;
 }
 .ShiftRight{
-  width: 70px;
+  width: 90px;
 }
 .Backslash{
   flex-grow: 1;
@@ -61,7 +64,6 @@
 .Space{
   flex-grow: 1;
 }
-
 .active{
   background: red;
   border-radius: 20px;
